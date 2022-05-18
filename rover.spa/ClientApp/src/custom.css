@@ -12,3 +12,27 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+table {
+    width: 500px;
+    height: 500px;
+}
+
+table, tr, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+td {
+    width: 100px !important;
+    height: 100px !important;
+    text-align: center;
+}
+
+h1{
+    color: blue;
+}
+
+h1, h2, h3 {
+    padding: 20px 0;
+}
