@@ -2,7 +2,7 @@
 import { useDropzone } from 'react-dropzone';
 
 
-const CVSUploader = () => {
+const CVSUploader = ({ handleData }) => {
 
     const onDrop = useCallback((acceptedFiles) => {
         acceptedFiles.forEach((file) => {
@@ -25,10 +25,15 @@ const CVSUploader = () => {
                 method: 'POST',
                 body: filedata,
             });
-            var json = await response.json();
-            alert(JSON.stringify(json));
-            //console.log(JSON.stringify(json));
-
+            if (response.ok) {
+                var json = await response.json();
+                //alert(JSON.stringify(json));
+                console.log(JSON.stringify(json));
+                handleData(json);
+            }
+            else {
+                console.log("error fetching csv data");
+            }
         }
         catch (ex) { console.error(ex); }
     };

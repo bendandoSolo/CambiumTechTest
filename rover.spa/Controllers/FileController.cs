@@ -25,7 +25,6 @@ namespace rover.spa.Controllers
                     RoverCommands.Add(row);
                 }
             }
-
             //NB: could return RoverCommands as well as part of instructions data
             //return Ok(RoverCommands);
             var PositionsList = RoverServices.ProcessMovementsDataToLocationsData(RoverCommands);

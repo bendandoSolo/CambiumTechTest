@@ -2,7 +2,7 @@
 
 
 
-const MarsMap = () => {
+const MarsMap = ({data}) => {
 
     //create map array from 0,0 to 5,5
     const initializeEmptyMap = () => {
@@ -39,6 +39,17 @@ const MarsMap = () => {
                 );
             })
             }
+            <h3>Current Loaded Data</h3>
+            {
+                Object.keys(data).length > 0 && data.map(function (item, index) {
+                    return (
+                        <div key={index}>
+                            <p > {JSON.stringify(item)} </p>
+                        </div>
+                    );
+                })
+            }
+            {Object.keys(data).length === 0 ? <p>No Data loaded</p> : <p>Data loaded</p>}
         </>
     )
 
