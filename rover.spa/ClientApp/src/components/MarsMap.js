@@ -1,9 +1,14 @@
-﻿import React, { useState } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 
-const rover = (index, direction, step) => ({ no: index, direction, step });
+const colors = ['blue', 'green', 'red', 'yellow', 'purple', 'cyan', 'black', 'orange'];
+const rover = (index, direction, step) => ({ color: colors[index], direction, step });
 //const MapCell = ({ data }) => <td>Rovers: {JSON.stringify(data.rovers)}</td>;
-const MapCell = ({ data }) => <td>{data.rovers.length ? JSON.stringify(data.rovers) : ' '}</td>;
+//const MapCell = ({ data }) => <td>{data.rovers.length ? JSON.stringify(data.rovers) : ' '}</td>;
+const MapCell = ({ data, step }) => <td>{data.rovers.length ? data.rovers.map((rover, i) => rover.step <= step ? <Rover key={i} {...rover} /> : rover.step ?? typeof rover.step) : ' '}</td>;
 
+
+const directionToArrow = direction => direction === 0 ? '↑' : direction === 1 ? '→' : direction === 2 ? '↓' : direction === 3 ? '←' : direction ?? typeof direction;
+const Rover = ({ color, direction }) => <div style={{ color }}>{directionToArrow(direction)}</div>;
 
 const MarsMap = ({data}) => {
     //create map array from 0,0 to 5,5
@@ -22,7 +27,13 @@ const MarsMap = ({data}) => {
     const [mapArray, setMapArray] = useState(initializeEmptyMap());
     const [step, setStep] = useState(0);
 
+    useEffect(() => {
+        runTest();
+    }, [data]);
+
+
     const runTest = () => {
+        //setMapArray([...initializeEmptyMap]);
         let step = 0;
         for (let i = 0; i < data.length; i++) {
             let currentRoverData = data[i];
@@ -43,18 +54,20 @@ const MarsMap = ({data}) => {
     return (
         <>
             <h2>Map of area of mars that rovers will be traversing</h2>
+            {/*Object.keys(data).length > 0 &&
+                <>
+                    <h3>Test Controls</h3>
+                    <p>Click run test to show results on map</p>
+                    <button onClick={runTest}>Run Test</button>
+                </>
+            */}
             <table>
                 <tbody>
-                    {mapArray.map((row, i) => <tr key={i}>{row.map((x, i2) => <MapCell key={i2} data={x} step={step} />)}</tr>)}
+                    {mapArray.reverse().map((row, i) => <tr key={i}>{row.map((x, i2) => <MapCell key={i2} data={x} step={step} />)}</tr>)}
                 </tbody>
             </table>
 
-            {Object.keys(data).length > 0 &&
-                <>
-                <h3>Test Controls</h3>
-                <button onClick={runTest}>Run Test</button>
-                </>
-            }
+            
             <h3>Current Map Data</h3>
             {mapArray.map(function (item, index) {
                 return (
