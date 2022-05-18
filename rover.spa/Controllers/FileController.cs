@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using rover.spa.Services;
 
 namespace rover.spa.Controllers
 {
@@ -26,7 +27,11 @@ namespace rover.spa.Controllers
             }
 
             //NB: could return RoverCommands as well as part of instructions data
-            return Ok(RoverCommands);
+            //return Ok(RoverCommands);
+            var PositionsList = RoverServices.ProcessMovementsDataToLocationsData(RoverCommands);
+            return Ok(PositionsList);
+
+
         }
 
 
