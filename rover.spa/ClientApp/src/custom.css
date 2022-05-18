@@ -1,4 +1,9 @@
 /* Provide sufficient contrast against white background */
+
+/*basic highlight color 
+
+*/
+
 a {
   color: #0366d6;
 }
@@ -29,10 +34,27 @@ td {
     text-align: center;
 }
 
-h1{
-    color: blue;
+h1 {
+    color: #1890ff;
 }
 
 h1, h2, h3 {
     padding: 20px 0;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.csv-uploader-container{
+    border: 1px solid #1890ff;
+    border-radius: 5px;
+    min-height: 150px;
+    width: 500px;
+}
+
+.csv-uploader-header {
+    color: #1890ff;
+    text-align: center;
+    padding: 24px;
 }
