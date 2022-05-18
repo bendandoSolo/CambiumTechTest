@@ -9,3 +9,8 @@ initial error on SPA due to running node v16.14.2
 Cannot find module 'babel-eslint'
 was solved with
 npm install babel-eslint --save-dev
+
+### Steps to Create Mars Rover Tech Test
+- Created Project Frontend Structure
+- Create Grid to display results
+- Create CSV File Upload System

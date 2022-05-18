@@ -20,8 +20,17 @@ const CVSUploader = () => {
     }, [])
 
     const uploadCSVToServer = async (filedata) => {
-        alert('we want to upload to server');
+        try {
+            var response = await fetch('api/file', {
+                method: 'POST',
+                body: filedata,
+            });
+            var json = await response.json();
+            alert(JSON.stringify(json));
+            //console.log(JSON.stringify(json));
 
+        }
+        catch (ex) { console.error(ex); }
     };
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
