@@ -31,8 +31,8 @@ namespace rover.spa.Services
                 ////set initial orientation
                 //DirectionalPoint dp = new DirectionalPoint(xpos, ypos, startingPositionData.Substring(startingPositionData.IndexOfAny(directions, secondNumberPosition), 1));
                 //roverPos.Add(dp);
-
                 roverPos.Add(ProcessInitialPositionData(startingPositionData));
+
                 //process movements data
 
 
