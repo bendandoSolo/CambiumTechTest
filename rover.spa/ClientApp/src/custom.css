@@ -19,8 +19,8 @@ code {
 }
 
 table {
-    width: 500px;
-    height: 500px;
+    min-width: 600px;
+    min-height: 600px;
 }
 
 table, tr, td {
