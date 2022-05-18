@@ -21,17 +21,18 @@ namespace rover.spa.Services
                 string startingPositionData = line.Substring(0, position);
                 string movementData = line.Substring(position + 1);
 
-                //start by setting that initial position data, refactor to method
-                //set xpos
-                int firstNumberPosition = startingPositionData.IndexOfAny(numbers);
-                Int32.TryParse(startingPositionData.Substring(firstNumberPosition, 1), out int xpos);
-                //set ypos
-                int secondNumberPosition = startingPositionData.IndexOfAny(numbers, firstNumberPosition + 1);
-                Int32.TryParse(startingPositionData.Substring(secondNumberPosition, 1), out int ypos);
-                //set initial orientation
-                DirectionalPoint dp = new DirectionalPoint(xpos, ypos, startingPositionData.Substring(startingPositionData.IndexOfAny(directions, secondNumberPosition), 1));
-                roverPos.Add(dp);
+                ////start by setting that initial position data, refactor to method
+                ////set xpos
+                //int firstNumberPosition = startingPositionData.IndexOfAny(numbers);
+                //Int32.TryParse(startingPositionData.Substring(firstNumberPosition, 1), out int xpos);
+                ////set ypos
+                //int secondNumberPosition = startingPositionData.IndexOfAny(numbers, firstNumberPosition + 1);
+                //Int32.TryParse(startingPositionData.Substring(secondNumberPosition, 1), out int ypos);
+                ////set initial orientation
+                //DirectionalPoint dp = new DirectionalPoint(xpos, ypos, startingPositionData.Substring(startingPositionData.IndexOfAny(directions, secondNumberPosition), 1));
+                //roverPos.Add(dp);
 
+                roverPos.Add(ProcessInitialPositionData(startingPositionData));
                 //process movements data
 
 
@@ -46,10 +47,16 @@ namespace rover.spa.Services
         }
 
 
-        //public static DirectionalPoint ProcessInitialPositionData()
-        //{
-
-        //}
+        public static DirectionalPoint ProcessInitialPositionData(string startingPositionData)
+        {
+            int firstNumberPosition = startingPositionData.IndexOfAny(numbers);
+            Int32.TryParse(startingPositionData.Substring(firstNumberPosition, 1), out int xpos);
+            //set ypos
+            int secondNumberPosition = startingPositionData.IndexOfAny(numbers, firstNumberPosition + 1);
+            Int32.TryParse(startingPositionData.Substring(secondNumberPosition, 1), out int ypos);
+            //set initial orientation
+            return new DirectionalPoint(xpos, ypos, startingPositionData.Substring(startingPositionData.IndexOfAny(directions, secondNumberPosition), 1));
+        }
 
 
 

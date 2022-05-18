@@ -1,0 +1,8 @@
+{
+"SpaProxyServer": {
+"ServerUrl": "https://localhost:44458",
+"LaunchCommand": "npm start",
+"WorkingDirectory": "C:\\Development\\TechTests\\Cambria\\MarsRoverTechTest\\rover.spa\\ClientApp\\",
+"MaxTimeoutInSeconds": "120"
+}
+}
