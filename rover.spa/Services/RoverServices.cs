@@ -33,17 +33,53 @@ namespace rover.spa.Services
                 //roverPos.Add(dp);
                 roverPos.Add(ProcessInitialPositionData(startingPositionData));
 
+                Direction currentOrientation = roverPos[0].direction;
+                int xpos = roverPos[0].x;
+                int ypos = roverPos[0].y;
                 //process movements data
-
-
+                foreach (char c in movementData)
+                {
+                    if (!Char.IsWhiteSpace(c))
+                    {
+                        switch (Char.ToUpper(c))
+                        {
+                            case 'M':
+                                switch (currentOrientation)
+                                {
+                                    case Direction.N:
+                                        ypos++;
+                                        break;
+                                    case Direction.E:
+                                        xpos++;
+                                        break;
+                                    case Direction.S:
+                                        ypos--;
+                                        break;
+                                    case Direction.W:
+                                        xpos--;
+                                        break;
+                                    default:
+                                        //potentially throw error here
+                                        break;
+                                }
+                                break;
+                            //use type conversion and modulus to go left or right
+                            case 'R':
+                                currentOrientation = (Direction)(((int)currentOrientation + 1) % 4);
+                                break;
+                            case 'L':
+                                currentOrientation = (Direction)(((int)currentOrientation + 3) % 4);
+                                break;
+                            default:
+                                //potentially throw error here
+                                break;
+                        }
+                        roverPos.Add(new DirectionalPoint(xpos, ypos, currentOrientation.ToString()));
+                    }
+                }
                 AllRoverPositions.Add(roverPos);
             }
-
-
-
-
-
-                return AllRoverPositions;
+            return AllRoverPositions;
         }
 
 

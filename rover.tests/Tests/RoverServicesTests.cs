@@ -136,7 +136,22 @@ namespace rover.tests.Tests
         }
 
 
+        [Theory]
+        [InlineData(new object[] { "1 2 N | LMLMLMLMM", 10 })]
+        [InlineData(new object[] { "3 3 E|MMRMMRMRRM", 11 })]
+        public void RoverServices_RoverCanGetCorrectDirectionCount(string input, int expectedDirectionCount)
+        {
+            List<string> csvData = new List<string>();
+            csvData.Add(input);
 
+            List<List<DirectionalPoint>> result = RoverServices.ProcessMovementsDataToLocationsData(csvData);
+
+            Assert.NotNull(result);
+
+            List<DirectionalPoint> directionsList = result[0];
+            Assert.Equal(expectedDirectionCount, directionsList.Count);
+
+        }
 
     }
 }
